@@ -1,0 +1,228 @@
+                   +--------------------------+
+                     |           CS 439         |
+                     | PROJECT 2: USER PROGRAMS |
+                     |      DESIGN DOCUMENT     |
+                     +--------------------------+
+
+---- Name ----
+
+Name: Chris Hume
+EID: cmh3258
+CS login: cmh3258
+Email: chume@utexas.edu
+Unique Number: 53025
+
+
+Slip days used on this project: 0
+
+---- GROUP ----
+
+Name: Shashank Pancharpula
+EID: SP27388
+CS login: shashank
+Email: shashank@cs.utexas.edu
+Unique Number: 53020
+Evaluation: 
+
+Name:Farhan Islam
+EID:fi535
+CS login:farhan
+Email:farhan.t.islam@gmail.com
+Unique Number:53010
+Evaluation: 
+
+Name: Javier Enrique De la Garza Sanchez
+EID: JED2922
+CS login: JED2922
+Email: javier.delagarza@gmail.com
+Unique Number: 53020
+Evaluation: 
+
+
+---- PARTNER EVALUATION SCALE ----
+
+>> Excellent: Consistently went above and beyond - tutored others, carried
+>> more than his/her fair share of the load.
+
+>> Very Good: Consistently did what he/she was supposed to do, very well
+>> prepared and cooperative.
+
+>> Satisfactory: Usually did what he/she was supposed to do, minimally
+>> prepared and cooperative.
+
+>> Marginal: Sometimes failed to show up and/or rarely prepared.
+
+>> Deficient: Often failed to show up and/or rarely prepared.
+
+>> Unsatisfactory: Consistently failed to show up and/or unprepared.
+
+>> Superficial: Practically no participation.
+
+>> No Show: No participation at all.
+
+
+---- PRELIMINARIES ----
+
+>> If you have any preliminary comments on your submission, notes for the
+>> TAs, or extra credit, please give them here.
+
+N/A
+
+>> Please cite any offline or online sources you consulted while
+>> preparing your submission, other than the Pintos documentation, course
+>> text, lecture notes, and course staff.
+
+N/A
+
+			   ARGUMENT PASSING
+			   ================
+
+---- DATA STRUCTURES ----
+
+>> A1: Copy here the declaration of each new or changed `struct' or
+>> `struct' member, global or static variable, `typedef', or
+>> enumeration.  Identify the purpose of each in 25 words or less.
+
+N/A
+
+---- ALGORITHMS ----
+
+>> A2: Briefly describe how you implemented argument parsing.  How do
+>> you arrange for the elements of argv[] to be in the right order?
+>> How do you avoid overflowing the stack page?
+
+I implement argument parsing by using strtok_r, which made tokens from cmd_line. In order to do this, we needed to palloc to get some memory, thus we have room to copy strings. 
+
+We put argv[] onto the stack in the right order by getting the size of our arguements, moving our pointer down, then saving our arguements by moving the pointer up. We kept track of two pointers. One was the bottom of our arguments, one was the bottom of our arguments addresses. We just pushed on the stack with memset, then added to our pointer to move it up in the stack. 
+
+---- RATIONALE ----
+
+>> A3: Why does Pintos implement strtok_r() but not strtok()?
+
+strtok() is basically saving the tokens to global, while strtok is local. If a process does strtok, then another process does it, it will get the strtok from the previous process. We want the tokens from our own process not another.
+
+>> A4: In Pintos, the kernel separates commands into a executable name
+>> and arguments.  In Unix-like systems, the shell does this
+>> separation.  Identify at least two advantages of the Unix approach.
+
+1. the kernel won't have to deal with seperating arguments, it can spend its time elsewhere
+2. 
+
+			     SYSTEM CALLS
+			     ============
+
+---- DATA STRUCTURES ----
+
+>> B1: Copy here the declaration of each new or changed `struct' or
+>> `struct' member, global or static variable, `typedef', or
+>> enumeration.  Identify the purpose of each in 25 words or less.
+
+Purpose: To keep track of parent and child relationship, as well as exit status
+			and load status
+
+	struct relationshipStruct
+	{
+		pid_t parentID;						/*the failed chosen one*/
+		pid_t childID;							/*the chosen one*/
+		struct semaphore sema;				/*semaphore used to block parent*/
+		struct list_elem relationshipElem;      /*list element for relationship list*/
+		int status;								/* status of the load */
+		int exit_status;						/* child exit status */
+		int already_waited_for;				/* if child had been waited for */
+	};
+
+[In struct thread] Purpose: to keep track of open files per process/thread
+	struct file *fileName [128];        /*Array of strings that store the filename*/
+	
+Purpose: keeping a list of relationship structs. 
+	struct list relationshipList; 
+
+Purpose: lock the relationship list so that the list won't get altered
+	struct semaphore relationshipSema;
+
+Purpose: this is the lock we used for the file system
+	struct semaphore writeSema;
+
+>> B2: Describe how file descriptors are associated with open files.
+>> Are file descriptors unique within the entire OS or just within a
+>> single process?
+
+File descriptors are associated with open files simply with an int. When a file gets opened, the file is given an int, which is the file descriptor. We stored it into an array to keep track of the files with each process. Thus, file descriptors are unique within a single process. Process A could have file A with file descriptor
+
+---- ALGORITHMS ----
+
+>> B3: Describe your code for reading and writing user data from the
+>> kernel.
+
+>> B4: Suppose a system call causes a full page (4,096 bytes) of data
+>> to be copied from user space into the kernel.  What is the least
+>> and the greatest possible number of inspections of the page table
+>> (e.g. calls to pagedir_get_page()) that might result?  What about
+>> for a system call that only copies 2 bytes of data?  Is there room
+>> for improvement in these numbers, and how much?
+
+>> B5: Briefly describe your implementation of the "wait" system call
+>> and how it interacts with process termination.
+
+>> B6: Any access to user program memory at a user-specified address
+>> can fail due to a bad pointer value.  Such accesses must cause the
+>> process to be terminated.  System calls are fraught with such
+>> accesses, e.g. a "write" system call requires reading the system
+>> call number from the user stack, then each of the call's three
+>> arguments, then an arbitrary amount of user memory, and any of
+>> these can fail at any point.  This poses a design and
+>> error-handling problem: how do you best avoid obscuring the primary
+>> function of code in a morass of error-handling?  Furthermore, when
+>> an error is detected, how do you ensure that all temporarily
+>> allocated resources (locks, buffers, etc.) are freed?  In a few
+>> paragraphs, describe the strategy or strategies you adopted for
+>> managing these issues.  Give an example.
+
+---- SYNCHRONIZATION ----
+
+>> B7: The "exec" system call returns -1 if loading the new executable
+>> fails, so it cannot return before the new executable has completed
+>> loading.  How does your code ensure this?  How is the load
+>> success/failure status passed back to the thread that calls "exec"?
+
+>> B8: Consider parent process P with child process C.  How do you
+>> ensure proper synchronization and avoid race conditions when P
+>> calls wait(C) before C exits?  After C exits?  How do you ensure
+>> that all resources are freed in each case?  How about when P
+>> terminates without waiting, before C exits?  After C exits?  Are
+>> there any special cases?
+
+---- RATIONALE ----
+
+>> B9: Why did you choose to implement access to user memory from the
+>> kernel in the way that you did?
+
+>> B10: What advantages or disadvantages can you see to your design
+>> for file descriptors?
+
+>> B11: The default tid_t to pid_t mapping is the identity mapping.
+>> If you changed it, what advantages are there to your approach?
+
+			   SURVEY QUESTIONS
+			   ================
+
+Answering these questions is optional, but it will help us improve the
+course in future semesters.  Feel free to tell us anything you
+want--these questions are just to spur your thoughts.  You may also
+choose to respond anonymously in the course evaluations at the end of
+the semester.
+
+>> In your opinion, was this assignment, or any one of the three problems
+>> in it, too easy or too hard?  Did it take too long or too little time?
+
+>> Did you find that working on a particular part of the assignment gave
+>> you greater insight into some aspect of OS design?
+
+>> Is there some particular fact or hint we should give students in
+>> future semesters to help them solve the problems?  Conversely, did you
+>> find any of our guidance to be misleading?
+
+>> Do you have any suggestions for the TAs to more effectively assist
+>> students, either for future semesters or the remaining projects?
+
+>> Any other comments?

@@ -1,0 +1,229 @@
+
+@font-face {
+    font-family: SourceSansLight;
+    src: url(../assets/SourceSans/SourceSansPro-Light.ttf);
+}
+
+@font-face {
+    font-family: SourceSansBold;
+    src: url(../assets/SourceSans/SourceSansPro-Bold.ttf);
+}
+
+@font-face {
+    font-family: SourceSansReg;
+    src: url(../assets/SourceSans/SourceSansPro-Regular.ttf);
+}
+
+@font-face {
+    font-family: OpenSansSemiBold;
+    src: url(../assets/OpenSans/OpenSans-Semibold.ttf);
+}
+
+@font-face {
+    font-family: OpenSansBold;
+    src: url(../assets/OpenSans/OpenSans-Bold.ttf);
+}
+
+
+.make-bold{font-family: SourceSansBold;font-weight:;}
+
+.category{font-weight:bold;font-family: SourceSansLight;color:black;
+	font-size: 60px; text-transform: uppercase;}
+.pad-bottom{padding-bottom: 20em}
+.make-purple{color:#980088;} 
+.enlarge{font-size:150%;}
+.bottom15{margin-bottom: 3em;}
+.color-it-orange{color: #f89c20;}
+.color-it-purple {color: #8b2988}
+.large-font{font-size: 35px;}
+.top25{margin-top:25px;}
+.top32{margin-top:35px;}
+.templateClass{height:40em;}
+
+/* backgrounds */
+.background-color-it-purple{background-color: #8b2988;}
+.background-color-it-white{background-color:white;}
+.background-color-it-green{background-color: #8BC54F;}
+
+/* header */
+.header-color-white{color: white !important}
+.header-color-green{color: #8BC54F !important}
+.header-color-black{color: black !important}
+.header-color-purple{color: #8b2988 !important}
+.SourceSansRegF{font-family: SourceSansLight;}
+
+.header-color-orange{color: #f89c20 !important;}
+.header-bold{font-weight: bolder;}
+
+.items-color-white{color:white;}
+.items-color-orange{color:#f89c20;}
+.items-color-black{color:black;}
+.items-color-purple{color:#8b2988;}
+
+.sub_section_header{font-size:14px;font-size: 24px;color: white;}
+.section-title{font-family: SourceSansReg; font-size: 35px;}
+.section-desc{font-family: SourceSansLight; font-size: 18px;}
+.subSect{height:20em;font-family: SourceSansReg;}
+.section-desc-move{margin-left:3em;margin-top: -1em;}
+
+/* Menu */
+.section-section{padding:2em;}
+.section-contain{width:90%;margin:0 auto;padding:5px 0 5px;}
+.meal-title{font-family: AveLight; font-weight: lighter; font-size:23px;color: #f89c20;width:100%; margin:0;margin-top:1em;}
+.meal-title-large{color: #8b2988; font-size: 39px; font-family: OpenSansSemiBold;}
+.meal-title-larger{font-size:35px;}
+.title-larger{font-size: 20px;}
+.meal-description{font-family: OpenSansSemiBold; font-size:18px; width:100%;}
+
+.meal-price{font-family: AveMed; font-size:16px;color: black; text-align:;width:93%;}
+.meal-already-tried{font-family: AveBook; font-size:14px;}
+.meal-link{color:#4682B4;text-decoration: underline;text-align: right; text-align:right;margin-bottom:1em;margin-top: -2em}
+.meal-link-button{color:#f89c20;text-decoration: underline;}
+.meal-link-button:hover{color:blue;text-decoration: underline;}
+.top-comment-quote{font-size: 20px !important;font-variant: SourceSansReg !important}
+
+.meal-quote{font-style: italic; color:black; font-size: 14px;}
+.picture img{margin-top:0;}
+.moveMe{margin-top:3em;}
+
+.review-count{font-family: AveLight; font-size:14px; color:black;}
+.star{width:30px;margin-top: -15px;}
+.star-list{margin-top: 22px}
+.label{font-size: 100%;}
+.contain-info{padding-bottom:2em;}
+/* review */
+.review-meal-title{font-family: AveLight; font-size:28px;color: #f89c20;}
+.review-meal-quote{color:black;font-size: 18px;}
+
+input[type="range"]::-webkit-slider-thumb {
+    background-image: url('../assets/slider_button.png');
+    background-size: 27px 27px;
+    background-repeat: no-repeat;
+     -webkit-appearance: none;
+    background-color: 0;
+    opacity: 1;
+    width: 27px;
+    height: 27px;
+    cursor: pointer;
+}
+.bar-labels h5{margin:-1em;margin-left:.2em;font-size: 1em;font-style: 0 !important;color:#999;}
+.bar-color{background-color: #8BC54E}
+.seb-label h5{font-style: normal !important; color:black;text-transform: capitalize !important}
+.grey-badge{background-color: #DCDCDC;color: black;font-weight: lighter; margin-left: 7px;}
+
+.submit-ratings-btn{background-color: #FF9700; padding:.3em 1.3em .3em 1.3em; color:white; 
+      font-size: 1.5em; border:0;transition: opacity 0.2s ease 0s; opacity: .8; margin-top: 1.5em;width:100%;text-transform:lowercase; font-variant: small-caps;}
+
+.meal-review-hr{border-top: 3px dotted #8b2988;}
+.termsInfoBox{width:100%;text-align: center}
+.orange-hr{border-top: 1px solid #f89c20; margin-top:5em;}
+
+/* simple temp */
+.simple-temp-narrow{width:70%;margin:0 auto;}
+.simple-temp-narrow h5{font-weight: lighter;}
+.more-room{margin-bottom: 29em}
+.row > .rowSubSection{padding:0 !important;}
+/* Loader animation */
+.loader {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  border: 4px solid #980088;
+  top: 50%;
+  -webkit-animation: loader 4s infinite ease;
+}
+
+.loader-inner {
+  vertical-align: top;
+  display: inline-block;
+  width: 100%;
+  background-color: #980088;
+   -webkit-animation: loader-inner 4s infinite ease;
+}
+
+
+
+::selection {
+    background: blue;
+    color: #fff;
+}
+::-moz-selection {
+    background: blue;
+    color: #fff;
+}
+
+
+@media (max-width: 1400px){
+    .background-color-it-purple{background-color:;}
+    .section-desc-move{margin-top:1em;}
+}
+
+@media (max-width: 1000px){
+    .subSect{height:23em;}
+}
+
+
+@media (max-width: 900px){
+    .picture{height:30em;}
+    .templateClass{height:50em;}
+    .subSect{height:15em;}
+
+}
+
+
+@media (max-width: 600px){
+
+    .category{font-size: 50px;}
+    .picture{height:20em;}
+    .templateClass{height:45em;}
+    .subSect{height:100%;}
+    .section-desc-move{margin-left:0em;}
+    .simple-temp-narrow{width:100%;}
+}
+
+@media (max-width: 400px){
+    .containt{width:90%;}
+    .overlay-content2{left:5%;}
+
+    .category{font-size: 40px;}
+
+    .picture{height:13em;}
+    .templateClass{
+      height: 42em;
+      width: 100%;
+      padding: 0;}
+    .star-list li{padding:0 !important;margin:0 !important;}
+    .star-list button{width:35px !important;}
+    .star-btn{width:35px; padding:0; margin:0;}
+    .starLarge{width:20px !important;}
+    .meal-title{margin-top: 0em}
+    .meal-title-large{font-size: 30px}
+    .large-font{font-size: 25px;}
+    .top35{margin-top: .5em !important;}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
