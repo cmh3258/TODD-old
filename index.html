@@ -94,7 +94,7 @@
 
 
         <!-- Navigation -->
-        <div ng-controller="mainCtrl">
+        <div ng-controller="appCtrl2">
 
         <nav class="navbar navbar-fixed-top navbar-white" role="navigation">
             <div class="container">
@@ -125,7 +125,7 @@
                     
                     <!-- Single button -->
                     <li>
-                        <button class="btn top8" ng-click="isCollapsed = !isCollapsed">explore</button>
+                        <button class="btn top8" ng-click="isCollapsed8 = !isCollapsed8">explore</button>
                     </li>
                     <li>
                         <div class="btn-group top8">
@@ -159,229 +159,8 @@
                 </ul>
             </div>
         </nav>
-       
-         
-        
-
-        <!-- Main Content -->
-        <!--<div class="container">-->
-
-        <!-- Inject content -->
-            <!--<div ui-view></div>-->
-            <div class="container">
-                
-                <tabset class="secondnav"  justified="true">
-                    <!--
-                    <tab heading="My Places">
-                        <div class="row">
-
-                            <div class="col-md-8">
-                                <h1>List</h1>
-                                <div ng-repeat="place in places">
-                                    <div class="col-md-4">
-                                    <div class="restaurant-tab">
-                                        <h4>{{place.restaurant}}</h4>
-                                        <h5>{{place.type}}</h5>
-                                        <h5>{{place.location}}</h5>
-                                        <h5>{{place.link}}</h5>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <h3>Add a place</h3>
-                                <form name="myForm" ng-submit="submitPlace(place)">
-                                    <input type="text" name="placeName" ng-model="place.name" placeholder="Place Name">
-                                    <input type="text" name="placeType" ng-model="place.type"
-                                      ng-minlength="3" placeholder="Place Type">
-                                    <input type="text" name="placeLocation" ng-model="place.location"
-                                      ng-minlength="3" placeholder="Place Location">
-                                    <input type="text" name="placeLink" ng-model="place.link"
-                                      ng-minlength="3" placeholder="Place Link">
-                                    <input type="submit" id="submit" value="Submit" />
-
-                                  </form>
-
-                                  <h3>To do for this site:</h3>
-                                  <ul>
-                                    <li>Connect to db - mongo</li>
-                                    <li>Create nodejs api</li>
-                                    <li>have list of categories</li>
-                                    <li>be able to put description on a place</li>
-                                    <li>use hashtags so can filter</li>
-                                    <li>'Pick a place for us'</li>
-                                    <li>check off ones that are done</li>
-                                    <li>integrate with foursquare & tripadvisor: have bar at top of site says 'add these places in your city:austin'. then can click them and will get the necessary information and add to your list. If have images can display those. Just have two columns of boxes that a user can click and add to their list. 
-                                    </li>
-                                    <li>Need to be able to get directions straight from the site</li>
-                                    <li>add places through foursquare - just do a search. secondary would be to 
-                                        just add a place that isn't on foursquare</li>
-                                    <li>connect through social media</li>
-                                    <li>use google - for maps and places</li>
-                                    <br>
-                                    <li>I would like to keep it to a one page application</li>
-                                    <li>right 1/3 would be tabs switching from map to adding places</li>
-                                </ul>
-                                <ul>
-                                    <li>food: foursquare</li>
-                                    <li>food: yelp</li>
-                                    <li>event: tripadvisor</li>
-                                    <li>event: eventbrite</li>
-                                </ul>
-                            </div>  
-
-                        </div>
-                    </tab>
-    
-                    <tab heading="Places">
-                        <!--
-                        <h1>Aggregated Places</h1>
-                        <h5>{{lat}}</h5>
-                        <h5>{{longi}}</h5>
-                        <button ng-click="getLocation()">Get Location</button>
-                        <div ng-repeat="place in newData">
-                            <h5>Full JSON: {{place}}</h5>
-                            <h3>Name: {{place.name}}</h3>
-                            <h3>City: {{place.location.city}}</h3>
-                            <h3>Address: {{place.location.address}}</h3>
-                            <h3>Formatted Address: {{place.location.formattedAddress}}</h3>
-                            <h3>crossStreet: {{place.location.crossStreet}}</h3>
-                            <h3>categories: {{place.categories}}</h3>
-                            <h3>category name: {{place.categories[0].name}}</h3>
-                        </div>
-                        -->
-                        <!--
-                        <ul class="flowGrid" ng-flow-grid="demoGird2" min-item-width="200">
-                          <li class="flowGridItem" ng-repeat="item in exploreFoodData">
-                              <a href=""><img ng-src="{{item.venue.newphoto}}"></a>
-                              <h3 class="item-name">{{item.venue.name}}</h3>
-                            <h5 class="item-category">{{item.venue.categories[0].name}}</h5>
-                          </li>
-                        </ul>
-
-                    -->
-
-                    
-
-                        <div class="row">
-                            <div class="col-md-12">
-                            <!--
-                            <div class="col-md-6">
-                                <h1>Foursquare Top Places</h1>
-                                <div class="row">
-                                <div ng-repeat="place in exploreData">
-                                    <div class="col-md-6">
-                                        <div class="restaurant-tab explore-item-container">
-                                           
-                                            <h3>{{place.venue.name}}</h3>
-                                            <h4>categories: {{place.venue.categories[0].name}}</h4>
-                                            <h5><a href="{{place.venue.url}}">Website</a></h5>
-                                            <div ng-repeat="x in place.venue.location.formattedAddress">
-                                            <h5>{{x}}</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                            -->
-                          
-                                <div class="row top80 allevents">
-                                <div ng-repeat="place in exploreFoodData">
-                                    <div class="col-sm-4" ng-click="moreInfo(place)">
-                                        <div class="explore-item-container background-white">
-                                            <!--<h5>{{place}}</h5>-->
-                                            <!--<h4>venue: {{place.venue}}</h4>-->
-                                            <div class="place-box"  ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
-                                                <img src="{{place.venue.newphoto}}" alt="place photo" class="main-photo" />
-                                                <div class="inner-place-box">
-                                                    <h3 class="item-name">{{place.venue.name}}</h3>
-                                                    <h5 class="item-category">{{place.venue.categories[0].name}}</h5>
-                                                    <button class="btn btn-default add-event" ng-show="shouldshow" ng-click="addevent(place.venue)">add</button>
-                                                </div>
-                                            </div>
-                                            <div class="more-info-box">
-                                                <div class="box-color-{{place.venue.hours.isOpen}}">
-                                                    <!--<h5 class="left12">{{place.venue.hours.status}}</h5>-->
-                                                </div>
-                                                <!--
-                                                <div class="pad5">
-                                                    <div ng-repeat="x in place.tips">
-                                                        <div class="circle-it">
-                                                        <h5>{{x.likes.count}}</h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                -->
-                                            </div>
-                                        </div>
-                                       <a href="#" ng-model="collapsed" ng-click="collapsed=!collapsed">Click here to <strong>Toggle (show/hide)</strong> description</a>
-                                    </div>
-                                    
-                                      
-                                </div>
-                                </div>
-
-                                 <div ng-show="collapsed">
-                                    <h2>Title</h2>
-                                    <h4>Description</h4>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis molestie nibh, sed efficitur felis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed laoreet, ex quis dictum ullamcorper, est libero fringilla nunc, eget maximus nisl felis quis urna. Quisque condimentum condimentum nisi, nec posuere urna pretium a. Sed porta nibh enim, et pulvinar lacus rutrum eu. Praesent dolor ipsum, convallis ut porttitor non, facilisis a urna. Maecenas tincidunt erat a ligula sollicitudin convallis congue nec dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget bibendum arcu. Suspendisse congue enim et tincidunt porta. Cras ac magna non dolor porttitor rhoncus. Vestibulum at cursus mi.
-
-                                        Quisque et suscipit mi. Ut convallis pellentesque nulla, vitae egestas urna maximus sed. In sodales efficitur facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec porttitor dignissim euismod. Sed vitae laoreet leo. Quisque ultrices fermentum eros non hendrerit.
-                                    </p>
-                                </div>
-                                <hr /> 
-                            </div>
-                            <div class="col-md-4 top70 animate-show" ng-show="showMoreInfo2">
-                                <div class="more-info-main">
-                                <h3>More information</h3>
-
-                                <div class="more-info-contain">
-                                    <img src="{{thephoto}}" class="event-prof-pic" alt="photo"/>
-
-                                    <h4 class="more-info-title">{{place.venue.name}}</h4>
-                                    <img src="map-temp.png" class="map-temp" alt="map"/>
-
-                                    <h4 class="item-category">categories: {{place.venue.categories[0].name}}</h4>
-                                    <h5 class="item-url"><a href="{{place.venue.url}}">{{place.venue.url}}</a></h5>
-                                    <h4><a href="{{moreInfoLink}}">more info</a></h4>
-                                    <h5>is open? {{place.venue.hours.isOpen}}</h5>
-                                    <h5>status {{place.venue.hours.status}}</h5>
-                                    <h5>contact : {{place.venue.contact.phone}}</h5>
-                                    <h5>rating :{{place.venue.rating}}</h5>
-
-                                    <div ng-repeat="x in place.tips">
-                                        <h5>likes: {{x.likes.count}}</h5>
-                                        <h5>text: {{x.text}}</h5>
-                                    </div>
-                                    
-                                    <h5>{{place.venue.location.lat}}</h5>
-                                    <h5>{{place.venue.location.lng}}</h5>
-
-                                    <div ng-repeat="x in place.venue.location.formattedAddress">
-                                        <h5 class="item-address">{{x}}</h5>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                        </div>
-                        <!--
-                    </tab>
-
-                </tabset>
-            -->
-        </div>
 
         
-    <div ng-controller="appCtrl2" class="contain-main">
-
-        <button ng-click="isCollapsed8 = !isCollapsed8">show</button>
-        <h3>{{isCollapsed8}}</h3>
            <div collapse="isCollapsed8">
                 <div class="exploresection">
                 <div class="well well-lg top57 explore-fix">
@@ -396,6 +175,9 @@
                 </div>
                 </div> 
             </div>
+        
+    <div class="contain-main top80">
+
         <!--
         Does work? {{hellobob}}
          <ul class="flowGrid" ng-flow-grid="demoGird2" min-item-width="200">
